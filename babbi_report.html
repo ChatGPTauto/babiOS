@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巴比食品 — 战略全景分析报告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1814;
+  --paper: #f5f0e8;
+  --cream: #ede8da;
+  --accent: #c84b2f;
+  --accent2: #2a6b4f;
+  --accent3: #2c4a7c;
+  --muted: #7a7268;
+  --border: rgba(26,24,20,0.12);
+  --serif: 'Noto Serif SC', serif;
+  --sans: 'DM Sans', sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 2px; }
+
+/* ── NAVIGATION ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(245,240,232,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+
+.nav-brand {
+  font-family: var(--serif);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.nav-links {
+  display: flex; gap: 0; list-style: none;
+}
+
+.nav-links a {
+  display: block; padding: 0 14px; height: 56px;
+  line-height: 56px; font-size: 12px;
+  color: var(--muted); text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+  border-right: 1px solid var(--border);
+}
+.nav-links a:first-child { border-left: 1px solid var(--border); }
+.nav-links a:hover { color: var(--ink); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 80px 60px 60px;
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.6;
+}
+
+.hero-tag {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--muted); letter-spacing: 0.1em;
+  margin-bottom: 32px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 700; line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+
+.hero-title .accent-word { color: var(--accent); }
+
+.hero-subtitle {
+  font-size: 17px; color: var(--muted);
+  max-width: 560px; line-height: 1.6;
+  animation: fadeUp 0.6s 0.2s ease both;
+  margin-bottom: 48px;
+}
+
+.hero-stats {
+  display: flex; gap: 0;
+  border-top: 1px solid var(--border);
+  padding-top: 40px;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+
+.hero-stat {
+  flex: 1;
+  padding-right: 40px;
+  border-right: 1px solid var(--border);
+  margin-right: 40px;
+}
+.hero-stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+.hero-stat-num {
+  font-family: var(--mono); font-size: 32px; font-weight: 700;
+  color: var(--ink); display: block;
+}
+.hero-stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+
+/* ── SECTIONS ── */
+section {
+  padding: 80px 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-header {
+  display: flex; align-items: baseline; gap: 20px;
+  margin-bottom: 52px;
+}
+
+.section-num {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--muted); letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.section-desc {
+  font-size: 15px; color: var(--muted);
+  max-width: 680px; line-height: 1.7;
+  margin-top: 16px;
+}
+
+/* ── METRIC GRID ── */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+
+.metric-card {
+  background: var(--paper);
+  padding: 28px 24px;
+}
+
+.metric-label { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 12px; }
+.metric-value { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--ink); }
+.metric-delta { font-size: 12px; margin-top: 6px; }
+.up { color: var(--accent2); }
+.down { color: var(--accent); }
+.neutral { color: var(--muted); }
+
+/* ── CHART BARS ── */
+.chart-section { margin-bottom: 48px; }
+.chart-label { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 20px; }
+
+.bar-chart { display: flex; flex-direction: column; gap: 12px; }
+.bar-row { display: flex; align-items: center; gap: 16px; }
+.bar-name { font-size: 12px; color: var(--muted); width: 56px; text-align: right; flex-shrink: 0; }
+.bar-track { flex: 1; height: 28px; background: var(--cream); position: relative; }
+.bar-fill {
+  height: 100%;
+  transition: width 1s cubic-bezier(0.16,1,0.3,1);
+}
+.bar-val { font-family: var(--mono); font-size: 12px; color: var(--ink); width: 64px; flex-shrink: 0; }
+
+/* ── TWO-COL ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--cream);
+  padding: 28px;
+}
+
+.card-tag {
+  display: inline-block; font-family: var(--mono);
+  font-size: 10px; letter-spacing: 0.08em;
+  padding: 3px 8px;
+  margin-bottom: 16px;
+}
+.tag-red { background: rgba(200,75,47,0.12); color: var(--accent); }
+.tag-green { background: rgba(42,107,79,0.12); color: var(--accent2); }
+.tag-blue { background: rgba(44,74,124,0.12); color: var(--accent3); }
+.tag-gray { background: rgba(26,24,20,0.08); color: var(--muted); }
+
+.card-title { font-family: var(--serif); font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; }
+.card-body { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: var(--border); margin: 32px 0; }
+
+/* ── PROBLEM LIST ── */
+.problem-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); }
+.problem-item {
+  display: grid; grid-template-columns: 240px 1fr;
+  border-bottom: 1px solid var(--border);
+}
+.problem-item:last-child { border-bottom: none; }
+.problem-left {
+  padding: 24px;
+  border-right: 1px solid var(--border);
+  background: var(--cream);
+}
+.problem-right { padding: 24px; }
+.problem-category { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 8px; }
+.problem-name { font-family: var(--serif); font-size: 15px; font-weight: 600; line-height: 1.3; }
+.problem-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.problem-data { font-family: var(--mono); font-size: 11px; color: var(--accent); margin-top: 8px; }
+
+/* ── GLOBAL TABLE ── */
+.global-table { width: 100%; border-collapse: collapse; }
+.global-table th {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; color: var(--muted);
+  text-align: left; padding: 12px 16px;
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper);
+}
+.global-table td {
+  font-size: 13px; padding: 18px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top; line-height: 1.5;
+}
+.global-table tr:hover td { background: var(--cream); }
+.td-co { font-weight: 500; }
+.td-good { color: var(--accent2); font-weight: 500; }
+.td-bad { color: var(--accent); }
+
+/* ── 2X VS 10X ── */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); }
+.compare-col { }
+.compare-head {
+  padding: 16px 24px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--border);
+}
+.head-2x { background: rgba(200,75,47,0.08); color: var(--accent); border-right: 1px solid var(--border); }
+.head-10x { background: rgba(42,107,79,0.08); color: var(--accent2); }
+
+.compare-item {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.compare-item:last-child { border-bottom: none; }
+.ci-left { border-right: 1px solid var(--border); }
+.ci-name { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+.ci-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+/* ── FLYWHEEL ── */
+.flywheel {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 12px;
+  padding: 32px;
+  background: var(--cream);
+  margin-bottom: 32px;
+}
+.fw-node {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  font-size: 13px;
+}
+.fw-arrow { font-size: 16px; color: var(--muted); }
+
+/* ── PHASE CARDS ── */
+.phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 48px; }
+.phase-card { background: var(--paper); padding: 28px; }
+.phase-num-badge {
+  display: inline-block;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+  padding: 3px 10px; margin-bottom: 16px;
+}
+.phase-period { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+.phase-kpi { font-size: 12px; color: var(--accent3); font-weight: 500; margin-bottom: 20px; padding: 10px 12px; background: rgba(44,74,124,0.06); }
+.phase-tasks { list-style: none; }
+.phase-tasks li { font-size: 12px; color: var(--muted); padding: 7px 0; border-bottom: 1px solid var(--border); line-height: 1.4; }
+.phase-tasks li:last-child { border-bottom: none; }
+.task-t { font-family: var(--mono); font-size: 10px; color: var(--ink); display: inline-block; margin-right: 6px; }
+
+/* ── RISK ── */
+.risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.risk-card { padding: 24px; border: 1px solid var(--border); }
+.risk-severity { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; padding: 3px 8px; margin-bottom: 12px; display: inline-block; }
+.sev-high { background: rgba(200,75,47,0.12); color: var(--accent); }
+.sev-med { background: rgba(200,150,47,0.12); color: #8a6020; }
+.risk-title { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+.risk-prob { font-size: 12px; color: var(--muted); line-height: 1.55; margin-bottom: 10px; }
+.risk-counter { font-size: 12px; color: var(--accent2); line-height: 1.55; padding-top: 10px; border-top: 1px solid var(--border); }
+
+/* ── QUOTE ── */
+.pull-quote {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 600;
+  line-height: 1.3;
+  padding: 48px 60px;
+  border-left: 4px solid var(--accent);
+  margin: 48px 0;
+  color: var(--ink);
+}
+
+/* ── SCENARIO BOX ── */
+.scenario-box {
+  padding: 32px;
+  background: var(--cream);
+  border-left: 4px solid var(--accent2);
+  margin-bottom: 24px;
+}
+.scenario-title { font-family: var(--serif); font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+.scenario-body { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 12px; }
+.scenario-metric { font-family: var(--mono); font-size: 13px; color: var(--accent2); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 48px 60px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-brand { font-family: var(--serif); font-size: 14px; font-weight: 700; }
+.footer-meta { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── STORE TREND ── */
+.trend-row { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.trend-year { font-family: var(--mono); font-size: 11px; color: var(--muted); width: 36px; }
+.trend-track { flex: 1; position: relative; height: 36px; }
+.trend-bar { height: 36px; display: flex; align-items: center; padding-left: 12px; }
+.trend-val { font-family: var(--mono); font-size: 12px; }
+.trend-delta { font-size: 11px; margin-left: 8px; }
+
+/* ── MOCKUP MINI ── */
+.mockup-wrap {
+  background: var(--cream);
+  padding: 24px;
+  margin-bottom: 32px;
+}
+.mockup-topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px;
+}
+.mockup-store { font-size: 13px; font-weight: 500; }
+.mockup-score { font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--accent2); }
+.mockup-score-sub { font-size: 10px; color: var(--muted); }
+.mockup-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 14px; }
+.mockup-kpi { background: var(--paper); padding: 10px; }
+.mockup-kpi-l { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+.mockup-kpi-v { font-family: var(--mono); font-size: 15px; font-weight: 700; }
+.mockup-alert { background: rgba(200,150,47,0.1); border-left: 3px solid #c8962f; padding: 10px 14px; font-size: 12px; color: #8a6020; line-height: 1.5; }
+
+/* ── INVEST TABLE ── */
+.invest-row {
+  display: grid; grid-template-columns: 200px 1fr 120px;
+  gap: 0; border-bottom: 1px solid var(--border);
+}
+.invest-row:last-child { border-bottom: none; }
+.invest-cell { padding: 18px 20px; font-size: 13px; }
+.invest-cell:not(:last-child) { border-right: 1px solid var(--border); }
+.invest-label { font-weight: 500; }
+.invest-detail { color: var(--muted); }
+.invest-amount { font-family: var(--mono); font-weight: 700; color: var(--accent2); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  section { padding: 60px 24px; }
+  .hero { padding: 80px 24px 48px; }
+  .metric-grid { grid-template-columns: 1fr 1fr; }
+  .two-col, .three-col, .compare-grid { grid-template-columns: 1fr; }
+  .problem-item { grid-template-columns: 1fr; }
+  .problem-left { border-right: none; border-bottom: 1px solid var(--border); }
+  .phase-grid { grid-template-columns: 1fr; }
+  .risk-grid { grid-template-columns: 1fr; }
+  .pull-quote { padding: 32px 24px; }
+  footer { flex-direction: column; gap: 16px; text-align: center; }
+  .hero-stats { flex-direction: column; gap: 24px; }
+  .hero-stat { border-right: none; margin-right: 0; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
+  .hero-stat:last-child { border-bottom: none; }
+  .invest-row { grid-template-columns: 1fr; }
+  .invest-cell:not(:last-child) { border-right: none; border-bottom: 1px solid var(--border); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-brand">巴比食品 · 战略报告</div>
+  <ul class="nav-links">
+    <a href="#financials">财报解读</a>
+    <a href="#problems">核心困境</a>
+    <a href="#global">全球对标</a>
+    <a href="#tenx">10倍思维</a>
+    <a href="#platform">平台化战略</a>
+    <a href="#roadmap">落地路径</a>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid-bg"></div>
+  <p class="hero-tag">STRATEGIC INTELLIGENCE REPORT · 2024–2025 · 中饮巴比食品股份有限公司</p>
+  <h1 class="hero-title">
+    从包子公司<br>到<span class="accent-word">加盟商操作系统</span>
+  </h1>
+  <p class="hero-subtitle">基于2024、2025年年度财报的深度解读——核心困境诊断、全球案例对标、10倍增长路径与平台化战略全景规划</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">18.59亿</span>
+      <span class="hero-stat-label">2025年营业收入 ↑11.2%</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">5,909</span>
+      <span class="hero-stat-label">期末加盟门店数 净增+766家</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">23.26万</span>
+      <span class="hero-stat-label">单店年均收入 四年连降</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">10×</span>
+      <span class="hero-stat-label">平台化战略目标增长维度</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 1: FINANCIALS ── -->
+<section id="financials">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <div>
+      <h2 class="section-title">财报解读</h2>
+      <p class="section-desc">2024–2025两份年报的核心数据解构。表面增长之下，隐藏着一个结构性的质量困局。</p>
+    </div>
+  </div>
+
+  <div class="metric-grid reveal">
+    <div class="metric-card">
+      <div class="metric-label">营业收入 2025</div>
+      <div class="metric-value">18.59亿</div>
+      <div class="metric-delta up">▲ 同比 +11.2%</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">归母净利润 2025</div>
+      <div class="metric-value">2.73亿</div>
+      <div class="metric-delta down">▼ 同比 -1.3%</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">扣非净利润 2025</div>
+      <div class="metric-value">2.45亿</div>
+      <div class="metric-delta up">▲ 同比 +16.7%</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">经营现金流 2025</div>
+      <div class="metric-value">3.19亿</div>
+      <div class="metric-delta up">▲ 同比 +46.9%</div>
+    </div>
+  </div>
+
+  <div class="two-col reveal">
+    <div>
+      <div class="chart-label">单店年均收入趋势（万元）</div>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <span class="bar-name">2022</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:100%;background:var(--accent2);"></div>
+          </div>
+          <span class="bar-val">25.45万</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">2023</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:97.5%;background:var(--accent2);opacity:0.8;"></div>
+          </div>
+          <span class="bar-val">24.82万</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">2024</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:95.2%;background:#c8962f;opacity:0.8;"></div>
+          </div>
+          <span class="bar-val">24.23万</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">2025</span>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:91.4%;background:var(--accent);opacity:0.85;"></div>
+          </div>
+          <span class="bar-val down">23.26万 ▼</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="chart-label">门店新增 vs 减少（家）</div>
+      <div class="bar-chart">
+        <div style="margin-bottom:10px;">
+          <div class="bar-row">
+            <span class="bar-name">2023新增</span>
+            <div class="bar-track"><div class="bar-fill" style="width:71.4%;background:var(--accent2);"></div></div>
+            <span class="bar-val">1,319</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-name">2023减少</span>
+            <div class="bar-track"><div class="bar-fill" style="width:40.6%;background:var(--accent);opacity:0.6;"></div></div>
+            <span class="bar-val">749</span>
+          </div>
+        </div>
+        <div style="margin-bottom:10px;">
+          <div class="bar-row">
+            <span class="bar-name">2024新增</span>
+            <div class="bar-track"><div class="bar-fill" style="width:55.6%;background:var(--accent2);"></div></div>
+            <span class="bar-val">1,026</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-name">2024减少</span>
+            <div class="bar-track"><div class="bar-fill" style="width:50.1%;background:var(--accent);opacity:0.6;"></div></div>
+            <span class="bar-val">926</span>
+          </div>
+        </div>
+        <div>
+          <div class="bar-row">
+            <span class="bar-name">2025新增</span>
+            <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--accent2);"></div></div>
+            <span class="bar-val">1,846</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-name">2025减少</span>
+            <div class="bar-track"><div class="bar-fill" style="width:58.5%;background:var(--accent);opacity:0.6;"></div></div>
+            <span class="bar-val down">1,080 ▼最高</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull-quote reveal">
+    "营业收入增长了11%，归母净利润却下滑1.3%——差距来自投资收益缩水9,382万元。表面光鲜的数字背后，是主业质量与加盟商盈利能力的双重压力。"
+  </div>
+</section>
+
+<!-- ── SECTION 2: PROBLEMS ── -->
+<section id="problems">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <div>
+      <h2 class="section-title">核心困境</h2>
+      <p class="section-desc">六大结构性问题，每一个都不是偶然，而是商业模式深层矛盾的症状。</p>
+    </div>
+  </div>
+
+  <div class="problem-list reveal">
+    <div class="problem-item">
+      <div class="problem-left">
+        <div class="problem-category">核心矛盾</div>
+        <div class="problem-name">单店收入四年连降</div>
+        <div class="problem-data">25.45 → 23.26万元 ↓8.6%</div>
+      </div>
+      <div class="problem-right">
+        <div class="problem-desc">这是最根本的结构性问题。巴比的商业模式是"向加盟商卖食材"，食材采购量由单店营收决定。单店收入不增长，营收质量就不增长——规模扩张只是在掩盖单店的衰退。消费降级、早餐赛道竞争加剧、外卖平台分流，三股力量同时压缩加盟商的利润空间。</div>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-left">
+        <div class="problem-category">运营风险</div>
+        <div class="problem-name">退盟率居高不下</div>
+        <div class="problem-data">2025年关闭1,080家 历史最高</div>
+      </div>
+      <div class="problem-right">
+        <div class="problem-desc">2025年新开1,846家，同时关闭1,080家，净增仅766家。高退盟是加盟商"用脚投票"——单店赚不到钱，自然选择退出。董事长在信中坦诚"退盟门店数量居高不下恐将持续一段时间"，是难得的管理层诚实表态，也是需要直面的最大警号。</div>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-left">
+        <div class="problem-category">结构问题</div>
+        <div class="problem-name">归母净利润实质下滑</div>
+        <div class="problem-data">2.73亿 同比-1.3%</div>
+      </div>
+      <div class="problem-right">
+        <div class="problem-desc">2025年归母净利润下滑1.3%，但扣非净利润增长16.7%。差距来源于持有东鹏饮料股份的公允价值收益大幅缩水约9,382万元。主业扣非利润在改善，但非经常损益波动将持续干扰账面净利润，投资者需穿透这层雾。</div>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-left">
+        <div class="problem-category">增长质量</div>
+        <div class="problem-name">规模扩张依赖并购</div>
+        <div class="problem-data">青露、馒乡人等并购贡献显著</div>
+      </div>
+      <div class="problem-right">
+        <div class="problem-desc">2025年新增1,846家中，并购（青露、馒乡人等）贡献相当大比例。特许加盟内生收入2024年甚至微降0.42%，内生开店动力不足。若并购整合效率不高，被并购门店的单店收入无法提升，那只是把问题规模化，而非解决问题。</div>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-left">
+        <div class="problem-category">场景局限</div>
+        <div class="problem-name">早餐单场景天花板</div>
+        <div class="problem-data">中晚餐贡献率极低</div>
+      </div>
+      <div class="problem-right">
+        <div class="problem-desc">巴比绑定早餐场景，门店下午14-17时段日均收入不足¥50（财报数据侧面印证）。相比全天候竞争对手，坪效利用率严重偏低。新店型日均营业额达传统店型2-3倍的突破，核心原因正是延伸了消费时段。</div>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-left">
+        <div class="problem-category">外部压力</div>
+        <div class="problem-name">消费降级与同质化竞争</div>
+        <div class="problem-data">全国包点门店数超19.8万家</div>
+      </div>
+      <div class="problem-right">
+        <div class="problem-desc">早餐赛道门槛极低，便利店、外卖平台、无品牌早餐摊全面入侵。2025年全国餐饮收入增速回落至3.2%，消费者性价比诉求极高。红餐数据显示全国包点门店已达19.8万家，竞争格局远比行业增速数字显示的要残酷。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: GLOBAL BENCHMARKS ── -->
+<section id="global">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <div>
+      <h2 class="section-title">全球对标案例</h2>
+      <p class="section-desc">美国、日本、新加坡三地同类企业，遭遇相同困境后的破局路径对比。历史不会重复，但总是押韵。</p>
+    </div>
+  </div>
+
+  <div class="three-col reveal" style="margin-bottom:48px;">
+    <div class="card">
+      <span class="card-tag tag-blue">🇺🇸 美国</span>
+      <div class="card-title">Subway 赛百味</div>
+      <div class="card-body">全球最大三明治连锁，2016年起单店销售额六年连降，加盟商诉讼超700起，美国净关3,200家门店。<br><br><strong>破局：</strong>2021年引入新CEO，推出品牌史上最大菜单革新"Eat Fresh Refresh"；数字化销售额5年增5倍；主动关闭低效门店，以质量换数量。连续11个季度同店正增长，AUV升至历史最高49万美元。</div>
+    </div>
+    <div class="card">
+      <span class="card-tag tag-blue">🇯🇵 日本</span>
+      <div class="card-title">吉野家 vs 食其家</div>
+      <div class="card-body">同赛道，截然不同的命运。吉野家依赖单品牛肉饭，疯牛病危机被迫重构；食其家提前布局外卖，2020年外送占比49% vs 吉野家仅3%。<br><br><strong>破局：</strong>吉野家2004年并购花丸乌冬构建多品牌矩阵；食其家持续菜单创新拉升客单价。同期吉野家亏损5.6亿日元，食其家盈利147亿日元。</div>
+    </div>
+    <div class="card">
+      <span class="card-tag tag-green">🇸🇬 新加坡</span>
+      <div class="card-title">Old Chang Kee 旧张记</div>
+      <div class="card-body">新加坡咖喱角小吃连锁，1990年代激进海外加盟，24家全部亏损。<br><br><strong>破局：</strong>2002年果断终止全部海外加盟，聚焦本土；2005年获清真认证扩大消费群体；B2B企业餐饮作为第二增长曲线。FY2025营收破1亿新元历史新高，ROA创5年最高，登上福布斯亚太最佳中小企业榜。</div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="chart-label" style="margin-bottom:16px;">全球破局共同规律对照矩阵</div>
+    <table class="global-table">
+      <thead>
+        <tr>
+          <th>企业</th>
+          <th>核心困境</th>
+          <th>放弃的2倍路径</th>
+          <th>选择的10倍跃迁</th>
+          <th>关键结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-co">Subway（美国）</td>
+          <td>单店收入六年连降，加盟商对立</td>
+          <td class="td-bad">继续补贴加盟商维持门店数</td>
+          <td>主动关店3,200家，All-in数字化，AUV为核心KPI</td>
+          <td class="td-good">11连季正增长，AUV历史新高</td>
+        </tr>
+        <tr>
+          <td class="td-co">吉野家（日本）</td>
+          <td>单品依赖极度脆弱，客群单一</td>
+          <td class="td-bad">牛肉饭涨价/促销/微调</td>
+          <td>危机倒逼多品牌重构，并购花丸乌冬，建控股集团</td>
+          <td class="td-good">从单品风险到多品牌防御，市值12亿美元</td>
+        </tr>
+        <tr>
+          <td class="td-co">食其家（日本）</td>
+          <td>堂食主场受外卖冲击</td>
+          <td class="td-bad">外卖小补贴，门店微调</td>
+          <td>外卖全面转型，外送从个位数升至49%占比</td>
+          <td class="td-good">同期吉野家亏损，食其家盈利147亿日元</td>
+        </tr>
+        <tr>
+          <td class="td-co">Old Chang Kee（新加坡）</td>
+          <td>海外加盟品质失控，全部亏损</td>
+          <td class="td-bad">继续放开加盟，接受波动</td>
+          <td>砍掉24家海外加盟，聚焦本土直营+清真认证</td>
+          <td class="td-good">收入、利润、ROA均破历史记录</td>
+        </tr>
+        <tr>
+          <td class="td-co">Panda Express（美国）</td>
+          <td>亚裔快餐单店坪效天花板</td>
+          <td class="td-bad">单店精细化运营微改善</td>
+          <td>Drive-thru+数字化重构门店模型，App+外卖</td>
+          <td class="td-good">AUV从60万翻至100万+美元，进入全美Top 15</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pull-quote reveal">
+    "三条铁律贯穿所有成功案例：先主动止血（关低效门店）、再大刀重构产品、最终建立多品牌/多渠道/多场景收入矩阵。没有一家是靠'更努力地做同一件事'突围的。"
+  </div>
+</section>
+
+<!-- ── SECTION 4: 10X THINKING ── -->
+<section id="tenx">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <div>
+      <h2 class="section-title">10倍思维框架</h2>
+      <p class="section-desc">2倍思维在旧框架里努力。10倍思维打破让你只能得到2倍的核心假设。巴比当前行动，哪些是哪些？</p>
+    </div>
+  </div>
+
+  <div class="compare-grid reveal" style="margin-bottom:48px;">
+    <div class="compare-col">
+      <div class="compare-head head-2x">2× 增长思维（正在做）</div>
+      <div class="compare-item ci-left">
+        <div class="ci-name">继续开新店冲规模</div>
+        <div class="ci-desc">2025年新开1,846家，但同时关闭1,080家。用新店数量对冲高退盟率，是在跑步机上加速——跑得更快，但原地不动。</div>
+      </div>
+      <div class="compare-item ci-left">
+        <div class="ci-name">外卖平台补贴支持</div>
+        <div class="ci-desc">给钱让加盟商接外卖订单，但没有帮其建立外卖运营能力。补贴停，行为停——这是买流量，不是建护城河。</div>
+      </div>
+      <div class="compare-item ci-left">
+        <div class="ci-name">新品研发 + 菜单丰富</div>
+        <div class="ci-desc">持续推出新包点品类，但仍在早餐单场景内迭代。没有突破时段限制，中晚餐贡献极低，坪效天花板未被打破。</div>
+      </div>
+      <div class="compare-item ci-left">
+        <div class="ci-name">收购区域品牌扩版图</div>
+        <div class="ci-desc">青露、馒乡人等并购扩大了门店数，但整合质量成谜。若无法提升被并购门店单店收入，只是数字游戏。</div>
+      </div>
+      <div class="compare-item ci-left">
+        <div class="ci-name">B端大客户拓展</div>
+        <div class="ci-desc">2025年大客户收入4.32亿，同比增长13.5%。方向正确但体量仍小（占总收入23%），速度不够激进，未成为真正的战略引擎。</div>
+      </div>
+    </div>
+    <div class="compare-col">
+      <div class="compare-head head-10x">10× 突破思维（待开启）</div>
+      <div class="compare-item">
+        <div class="ci-name">从"食材供应商"变成"加盟商操作系统"</div>
+        <div class="ci-desc">向加盟商提供数字化经营平台：实时单店数据仪表盘、AI补货预测、外卖运营赋能。数据即护城河，竞争对手无法复制。</div>
+      </div>
+      <div class="compare-item">
+        <div class="ci-name">把"包子"变成"中式鲜食全天候平台"</div>
+        <div class="ci-desc">新店型日均2-3倍的核心是"全天候消费场景"。早+中+晚+夜宵彻底重构门店坪效，打破早餐单场景天花板。</div>
+      </div>
+      <div class="compare-item">
+        <div class="ci-name">向同行开放冷链和中央厨房</div>
+        <div class="ci-desc">5个大型中央厨房是稀缺重资产。向非竞争性餐饮品牌开放，收取服务费——基础设施即商业，零边际成本的增量收入。</div>
+      </div>
+      <div class="compare-item">
+        <div class="ci-name">消费者数据资产化</div>
+        <div class="ci-desc">每天服务百万顾客却没有用户数据。建立会员体系积累消费偏好，反向指导产品研发和选址——让数据替代直觉做决策。</div>
+      </div>
+      <div class="compare-item">
+        <div class="ci-name">把馅料业务打造成独立B2B品牌</div>
+        <div class="ci-desc">定制馅料2025年增长85%，突破7,200万。这是独立赛道——向全国餐饮业供应标准化馅料，脱离门店独立成立事业部。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="three-col reveal">
+    <div class="scenario-box">
+      <div class="scenario-title">战场一：平台化</div>
+      <div class="scenario-body">把加盟商变成"数字原住民"——巴比提供经营OS，不只提供食材。5,900家门店的数据网络形成飞轮，预测精度持续提升，竞争对手无法在3-5年内追上。</div>
+      <div class="scenario-metric">潜在影响：单店收入+15-30%，退盟率降低，数据资产积累</div>
+    </div>
+    <div class="scenario-box" style="border-color:var(--accent3);">
+      <div class="scenario-title">战场二：供应链开放</div>
+      <div class="scenario-body">5个中央厨房向外开放，冷链变收费基础设施。产能利用率从约70%提升至90%+，增量收入无需新建资产。</div>
+      <div class="scenario-metric">潜在影响：增量年收入估计1.5-3亿元，ROA显著提升</div>
+    </div>
+    <div class="scenario-box" style="border-color:var(--accent);">
+      <div class="scenario-title">战场三：全天候场景</div>
+      <div class="scenario-body">新店型打通早中晚，坪效模型彻底重构。新店型日均营业额已达传统店型2-3倍，关键是规模化复制标准化体系。</div>
+      <div class="scenario-metric">潜在影响：单店日均收入从650元提升至1,300-2,000元</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 5: PLATFORM STRATEGY ── -->
+<section id="platform">
+  <div class="section-header reveal">
+    <span class="section-num">05</span>
+    <div>
+      <h2 class="section-title">平台化战略详解</h2>
+      <p class="section-desc">Babbi OS——加盟商操作系统的四大核心模块，以及参照的全球最佳实践。</p>
+    </div>
+  </div>
+
+  <div class="mockup-wrap reveal">
+    <div class="mockup-topbar">
+      <div>
+        <div class="mockup-store">上海·长寿路店 · 加盟商王建国 · 营业第847天</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px;">Babbi OS · 加盟商经营仪表盘（概念原型）</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="mockup-score">72</div>
+        <div class="mockup-score-sub">健康评分 / 100</div>
+      </div>
+    </div>
+    <div class="mockup-alert">预警：外卖评分本周下滑至4.6，低于区域均值4.8。建议：优化午高峰出餐速度，本周启动"好评返现"活动。</div>
+    <div style="margin-top:14px;">
+      <div class="mockup-grid">
+        <div class="mockup-kpi"><div class="mockup-kpi-l">今日营收</div><div class="mockup-kpi-v">¥2,840</div></div>
+        <div class="mockup-kpi"><div class="mockup-kpi-l">外卖占比</div><div class="mockup-kpi-v">38%</div></div>
+        <div class="mockup-kpi"><div class="mockup-kpi-l">损耗率</div><div class="mockup-kpi-v down">8.2%</div></div>
+        <div class="mockup-kpi"><div class="mockup-kpi-l">复购率</div><div class="mockup-kpi-v up">34%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col reveal" style="margin-bottom:48px;">
+    <div class="card">
+      <span class="card-tag tag-green">模块一</span>
+      <div class="card-title">智能经营仪表盘</div>
+      <div class="card-body">
+        每家门店生成0-100综合健康评分，由营收偏差、外卖评分、损耗率、复购率四维度合成。低于阈值自动触发督导介入。<br><br>
+        <strong>参照：</strong>美国Toast餐厅POS系统——用统一数据标准让每个餐厅老板第一次"看见"自己的门店，从"凭经验"转向"看数据"。Toast上市市值超百亿美元。
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-tag tag-green">模块二</span>
+      <div class="card-title">AI补货引擎</div>
+      <div class="card-body">
+        包子是当日品，卖不完纯损失。历史销售数据×天气/节假日/周几×周边人流变化，给出每日精准备货建议。损耗预警：超阈值立即推送"今日外卖减价促销"。<br><br>
+        <strong>参照：</strong>7-Eleven Japan 1982年"单品管理"系统——店长从凭经验备货解放出来，单店食品损耗率降至行业均值50%以下，成为全球零售数字化运营标杆。
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-tag tag-blue">模块三</span>
+      <div class="card-title">外卖运营赋能</div>
+      <div class="card-body">
+        从5,900家门店的外卖数据中提炼"高评分门店"共同行为特征，变成标准化运营手册，自动推送给低评分门店。差评处理SOP、峰值时段备料流程、平台算法应对策略——系统性能力，不是补贴。<br><br>
+        <strong>参照：</strong>食其家外送占比从3%升至49%的核心，不是"给加盟商发补贴"，而是总部建立了一套外卖运营标准体系。
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-tag tag-blue">模块四</span>
+      <div class="card-title">消费者会员体系</div>
+      <div class="card-body">
+        今天巴比每天服务百万消费者，但对他们一无所知。统一会员入口（微信小程序），消费者在任何门店积分，总部可看全局消费热图——哪个年龄段偏好哪款产品、哪个商圈午市需求更高。<br><br>
+        <strong>参照：</strong>麦当劳中国"麦麦会员"覆盖3亿+用户，数字化销售占比超70%；Old Chang Kee 80家门店统一会员数据，新品研发胜率显著高于竞争对手。
+      </div>
+    </div>
+  </div>
+
+  <div class="flywheel reveal">
+    <div class="fw-node">5,900家门店每日数据上传</div>
+    <span class="fw-arrow">→</span>
+    <div class="fw-node">AI模型精度持续提升</div>
+    <span class="fw-arrow">→</span>
+    <div class="fw-node">补货/外卖建议更精准</div>
+    <span class="fw-arrow">→</span>
+    <div class="fw-node">单店ROI改善</div>
+    <span class="fw-arrow">→</span>
+    <div class="fw-node">退盟率下降，口碑扩散</div>
+    <span class="fw-arrow">→</span>
+    <div class="fw-node">新加盟商因OS加入</div>
+    <span class="fw-arrow">→</span>
+    <div class="fw-node">数据网络更大</div>
+    <span class="fw-arrow" style="color:var(--accent2);font-weight:700;">↻</span>
+  </div>
+</section>
+
+<!-- ── SECTION 6: ROADMAP ── -->
+<section id="roadmap">
+  <div class="section-header reveal">
+    <span class="section-num">06</span>
+    <div>
+      <h2 class="section-title">落地路线图</h2>
+      <p class="section-desc">三阶段推进，按价值验证→规模复制→飞轮启动的节奏，分步投入，降低风险。</p>
+    </div>
+  </div>
+
+  <div class="phase-grid reveal">
+    <div class="phase-card">
+      <span class="phase-num-badge tag-green">阶段一</span>
+      <div class="card-title" style="margin-bottom:8px;">价值验证</div>
+      <div class="phase-period">0–12个月 · 试点100家门店</div>
+      <div class="phase-kpi">核心KPI：样本单店月收入提升≥10%；加盟商NPS≥60</div>
+      <ul class="phase-tasks">
+        <li><span class="task-t">Q1–Q2</span>上线经营仪表盘 + 损耗预警；接入美团/饿了么数据API</li>
+        <li><span class="task-t">Q2–Q3</span>AI补货建议MVP版；督导系统数字化替代纸质巡查</li>
+        <li><span class="task-t">Q3–Q4</span>外卖评分管理工具；微信小程序会员入口上线</li>
+        <li><span class="task-t">Q4</span>数据复盘+ROI测算；决策是否全量推广</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <span class="phase-num-badge tag-blue">阶段二</span>
+      <div class="card-title" style="margin-bottom:8px;">规模复制</div>
+      <div class="phase-period">12–30个月 · 覆盖全量门店</div>
+      <div class="phase-kpi">核心KPI：平台月活门店比例≥80%；退盟率下降30%</div>
+      <ul class="phase-tasks">
+        <li><span class="task-t">M13–18</span>全量门店仪表盘上线；AI补货全面推广</li>
+        <li><span class="task-t">M18–24</span>消费者会员100万目标；外卖赋能标准化</li>
+        <li><span class="task-t">M24–30</span>数据反哺产品研发；新品上市胜率提升</li>
+        <li><span class="task-t">持续</span>平台迭代 + 加盟商培训数字化</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <span class="phase-num-badge" style="background:rgba(44,74,124,0.15);color:var(--accent3);">阶段三</span>
+      <div class="card-title" style="margin-bottom:8px;">飞轮效应</div>
+      <div class="phase-period">30个月+ · 平台护城河成型</div>
+      <div class="phase-kpi">核心KPI：Babbi OS成为招募新加盟商的核心竞争力</div>
+      <ul class="phase-tasks">
+        <li><span class="task-t">护城河</span>5,900+门店数据网络，预测精度领先行业</li>
+        <li><span class="task-t">扩展</span>向非竞争餐饮品牌开放平台SaaS服务</li>
+        <li><span class="task-t">变现</span>消费者数据用于精准营销+新品预售</li>
+        <li><span class="task-t">战略</span>平台估值独立，可分拆或独立融资</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-bottom:48px;">
+    <div class="chart-label" style="margin-bottom:16px;">投资回报测算</div>
+    <div style="border:1px solid var(--border);">
+      <div class="invest-row" style="background:var(--cream);">
+        <div class="invest-cell invest-label" style="font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--muted);">投入/产出项目</div>
+        <div class="invest-cell invest-label" style="font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--muted);">详细说明</div>
+        <div class="invest-cell invest-label" style="font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--muted);">金额估算</div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-cell invest-label">平台建设总投入（3年）</div>
+        <div class="invest-cell invest-detail">技术研发6,000万 + 数据接入2,000万 + 运营推广4,000万</div>
+        <div class="invest-cell invest-amount">~1.5亿元</div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-cell invest-label">单店收入改善（第3年）</div>
+        <div class="invest-cell invest-detail">损耗降低贡献8% + 外卖提升7% + 时段激活5-10%，5,900家门店</div>
+        <div class="invest-cell invest-amount">+3–4亿/年</div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-cell invest-label">退盟率改善价值</div>
+        <div class="invest-cell invest-detail">若退盟率从18%降至10%，减少约480家流失，按单店年贡献16万元</div>
+        <div class="invest-cell invest-amount">~8,000万/年</div>
+      </div>
+      <div class="invest-row">
+        <div class="invest-cell invest-label">SaaS对外输出（长期）</div>
+        <div class="invest-cell invest-detail">向非竞争餐饮品牌开放平台，按Toast/有赞SaaS模式收订阅费</div>
+        <div class="invest-cell invest-amount">1–3亿/年</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-grid reveal">
+    <div class="risk-card">
+      <span class="risk-severity sev-high">高风险</span>
+      <div class="risk-title">加盟商数字化接受度低</div>
+      <div class="risk-prob">大量加盟商是40-50岁个体户，习惯手工记账，对App有抵触。若强制推行，可能激化关系。</div>
+      <div class="risk-counter">对策：第一年完全免费，且收益分享机制（节省的损耗成本巴比不多收）；由督导"手把手"带入门，而非发App让加盟商自学。</div>
+    </div>
+    <div class="risk-card">
+      <span class="risk-severity sev-high">高风险</span>
+      <div class="risk-title">数据孤岛与接口壁垒</div>
+      <div class="risk-prob">美团、饿了么不愿向品牌方开放全量数据；各区域门店POS系统不统一，数据清洗成本高。</div>
+      <div class="risk-counter">对策：优先从自有渠道（巴比小程序、自有POS）建数据底座；与外卖平台谈"品牌数字化合作"协议，用流量换数据权限，参考麦当劳与美团的独家合作模式。</div>
+    </div>
+    <div class="risk-card">
+      <span class="risk-severity sev-med">中风险</span>
+      <div class="risk-title">技术团队能力不足</div>
+      <div class="risk-prob">巴比是食品企业，缺乏数据工程和AI产品团队，自研平台周期长、风险高。</div>
+      <div class="risk-counter">对策：阶段一采用"外包核心+自建数据"策略，与美团SaaS、有赞、哗啦啦等餐饮数字化服务商合作快速MVP；18个月后根据效果决定是否自建内化。</div>
+    </div>
+    <div class="risk-card">
+      <span class="risk-severity sev-med">中风险</span>
+      <div class="risk-title">平台价值被模仿</div>
+      <div class="risk-prob">若巴比证明了平台有效，竞争对手（甘其食、包子铺等）可能跟进建设类似系统。</div>
+      <div class="risk-counter">对策：数据网络效应是核心壁垒——5,900家门店的数据积累，竞争对手需要3-5年才能追上。先发优势决定一切，必须在1年内完成试点并看到数据。</div>
+    </div>
+  </div>
+
+  <div class="pull-quote reveal">
+    "假设五年后——版本A是一家更好的包子公司（营收25亿、净利3.5亿）；版本B是一家以鲜食为根基的餐饮科技公司（企业价值35亿+，平台估值独立）。两者所需的额外努力差距没有想象中大。资金不是问题，认知是问题。"
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">巴比食品 · 战略全景分析</div>
+  <div class="footer-meta">基于2024、2025年年度财报 · Claude AI战略分析 · 2026</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      const offset = target.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
+    }
+  });
+});
+
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const sections = document.querySelectorAll('section[id], .hero');
+  let currentId = '';
+  sections.forEach(sec => {
+    if (scrolled >= sec.offsetTop - 120) currentId = sec.id || '';
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + currentId ? 'var(--ink)' : '';
+  });
+});
+</script>
+</body>
+</html>
